@@ -6,6 +6,7 @@
 public class Solution {
 
     public int sqrt(int x) {
+
         if(x == 0 || x == 1) 
             return x;
         // long is better here as ignores negative opts.
