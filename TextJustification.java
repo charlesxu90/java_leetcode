@@ -37,23 +37,31 @@ public class TextJustification {
 
             end = start;
             len = 0; 
-            int wl;
-            while (len + end - start <= L) {
-                wl = words[end].length();
-                len += wl;
+            while (len + (end - 1) - start <= L && end < nofwords) {
+                len += words[end].length();
                 end++;
             }
-            len -= words[end].length();
-            end--;
+            if (end == nofwords && len + (end - 1) - start <= L)
+                end--;
+            else {
+                end--;
+                len -= words[end].length();
+                end--;
+            }
 
-            if (end == start) {
+            if (end == start || end == nofwords - 1){
                 // "justification.  "
+                int linelength = 0;
+                for (int i = start; i < end; i++) {
+                    line.append(words[i]);
+                    line.append(' ');
+                    linelength += words[i].length() + 1; 
+                }
                 line.append(words[end]);
-                for (int i = 0; i < L - words[end].length(); i++) {
+                linelength += words[end].length();
+                for (int i = 0; i < L - linelength; i++) {
                     line.append(' ');
                 }
-                ret.add(line.toString());
-
             } else {
                 // "This    is    an",
                 // "example  of text",
@@ -63,6 +71,8 @@ public class TextJustification {
                 for (int i = start; i <= end; i++) {
 
                     line.append(words[i]);
+                    if (i == end)
+                        break;
                     for (int j = 1; j <= nofspace; j++ ){
                         line.append(' ');
                     }
@@ -72,23 +82,22 @@ public class TextJustification {
                     }
                 }
             }
-
+            ret.add(line.toString());
             start = end + 1;
         }
         return ret;
     }
 
     public static void main (String args[] ) {
-
+    
         TextJustification tj = new TextJustification();
         String[] words = {"This", "is", "an", "example", "of", "text", "justification."};
         List<String> result = new ArrayList<String>();
-
         result = tj.fullJustify(words, 16);
-
+        
         for (int i = 0; i < result.size(); i++) {
-            System.out.printf("%s\n", result.get(i));
+            System.out.printf("i is : %d\t", i);
+            System.out.printf("Result:%s\n", result.get(i));
         }
     }
-
 }
