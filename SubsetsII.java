@@ -46,7 +46,7 @@ public class Solution {
         }
     }
     */
-    // Solution 2; Iterative 
+    // Solution 2; Iterative T: O(2^n), S: (1)
      public List<ArrayList<Integer>> subsetsWithDup(int[] num) {
          Arrays.sort(num);
          List<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
