@@ -20,6 +20,7 @@ public class Solution {
                 permute.add(num[i]);
             ret.add(permute);
         }while(nextPermutation(num));
+        return ret;
     }
     private boolean nextPermutation(int[] num) {
         int i1 = -1;
