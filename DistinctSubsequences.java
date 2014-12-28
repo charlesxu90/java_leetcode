@@ -5,17 +5,39 @@
  *
  * Here is an example:
  * S = "rabbbit", T = "rabbit"
+ * Distinct Subsequences of S & T:
+ * ra_bbit, rab_bit, rabb_it
  *
  * Return 3.
  *
  * f(i, j) = f(i - 1, j) + S[i] == T[j]? f(i - 1, j - 1) : 0;
  * Where f(i, j) is the number of subsequences for T[0:j] in S[0:i];
  */
-public class Solution {
+
+public class DistinctSubsequences {
 
     public int numDistinct(String S, String T) {
+        int[][] f = new int[S.length() + 1][T.length() + 1];
+        for (int k = 0; k < S.length(); k++)
+            f[k][0] = 1;
+        for (int i = 1; i <= S.length(); i++)
+            for (int j = 1; j <= T.length(); j++){
+                // Dynamic programming
+                if (S.charAt(i - 1) == T.charAt(j - 1))
+                    f[i][j] = f[i - 1][j] + f[i - 1][j - 1];
+                else
+                    f[i][j] = f[i - 1][j];
+            }
 
+        return f[S.length()][T.length()];
 
     }
 
+    public static void main ( String[] args) {
+        String S = "rabbbit";
+        String T = "rabbit";
+
+        DistinctSubsequences distSubseq = new DistinctSubsequences();
+        System.out.format("No. of distinct subsequences of T in S is: %d.\n", distSubseq.numDistinct(S, T));
+    }
 }

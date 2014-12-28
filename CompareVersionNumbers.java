@@ -12,8 +12,38 @@
  */
 
 public class CompareVersionNumbers {
-
+// solution 1
     public int compareVersion(String version1, String version2) {
+//        System.out.printf("version1: %s, version2: %s \n", version1, version2);
+        String[] v1 = version1.split("\\.");
+        String[] v2 = version2.split("\\.");
+//        System.out.printf("type of v1: %s \n", v1.getClass().getName());
+
+        int ver1, ver2;
+        int v1l = v1.length;
+        int v2l = v2.length;
+        int maxl = Math.max(v1l, v2l);
+//        System.out.printf("v1l : %d, v2l : %d\n", v1l, v2l);
+//        System.out.printf("v1 : %s, v2: %s \n", v1[0], v2[0]);
+        if (v1l == 0) ver1 = Integer.parseInt(version1);
+        if (v2l == 0) ver2 = Integer.parseInt(version2);
+
+        for (int i = 0; i < maxl; i++) {
+            ver1 = 0;
+            if (i < v1l) 
+                ver1 = Integer.parseInt(v1[i]);
+            ver2 = 0;
+            if (i < v2l)
+                ver2 = Integer.parseInt(v2[i]);
+            if (ver1 < ver2)
+                return -1;
+            if(ver1 > ver2)
+                return 1;
+        }
+        return 0;
+    }
+// solution 2
+/*    public int compareVersion(String version1, String version2) {
         long a = 0, b =0;
         int v1len = version1.length(), v2len = version2.length();
         int i = 0, j = 0;
@@ -34,7 +64,7 @@ public class CompareVersionNumbers {
         }
         return 0;
     }
-
+*/
     public static void main (String args[]) {
 
         String v1 = "1.0";
