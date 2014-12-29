@@ -29,9 +29,8 @@ public class Solution {
                 if (ret > (Integer.MAX_VALUE - v) / 10)
                     return neg? Integer.MIN_VALUE : Integer.MAX_VALUE;
                 ret = ret * 10 + v;
-            } else {
-                return neg? -ret : ret;
-            }
+            } else
+                break;
         }
         return neg? -ret : ret;
     }
