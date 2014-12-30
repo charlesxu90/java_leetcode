@@ -11,7 +11,7 @@ public class Solution {
         String left = "([{";
         String right = ")]}";
         for (int i = 0; i < s.length(); i++) {
-            Char c = s.charAt(i);
+            char c = s.charAt(i);
             if (left.indexOf(c) != -1 ) {
                 stk.push(c);
             } else {
