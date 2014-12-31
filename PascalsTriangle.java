@@ -15,10 +15,11 @@
 import java.util.ArrayList;
 
 public class Solution {
+    // Solution 1: T: O(n^2), S: O(n)
     public ArrayList<ArrayList<Integer>> generate(int numRows) {
-        if (numRows == 0)
-            return new ArrayList<ArrayList<Integer>>();
         ArrayList<ArrayList<Integer>> ret = new ArrayList<ArrayList<Integer>>();
+        if (numRows == 0)
+            return ret;
         ArrayList<Integer> level = new ArrayList<Integer>();
         level.add(1);
         while (numRows-- != 0) {
