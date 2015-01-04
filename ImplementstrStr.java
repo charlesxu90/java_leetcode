@@ -34,7 +34,7 @@ public class Solution {
     */
 
     // Solution 2. Boyer-Moore string search algorithm
-    public int itrStr(String haystack, String needle) {
+    public int strStr(String haystack, String needle) {
         if (needle == null || needle.length() == 0)
             return 0;
         int charTable[] = makeCharTable(needle);
