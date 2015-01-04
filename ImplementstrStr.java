@@ -39,12 +39,12 @@ public class Solution {
             return 0;
         int charTable[] = makeCharTable(needle);
         int offsetTable[] = makeOffsetTable(needle);
-        for (int i = needle.length - 1, j; i < haystack.length;) {
-            for (j = needle.length - 1; needle[j] == haystack[i]; --i, --j) {
+        for (int i = needle.length() - 1, j; i < haystack.length();) {
+            for (j = needle.length() - 1; needle.charAt(j) == haystack.charAt(i); --i, --j) {
                 if (j == 0)
                     return i;
             }
-            i += Math.max(offsetTable[needle.length - 1 -j], charTable[haystack[i]]);
+            i += Math.max(offsetTable[needle.length() - 1 -j], charTable[haystack.charAt(i)]);
         }
         return -1;
     }
@@ -75,7 +75,7 @@ public class Solution {
         }
         for (int i = 0; i < needle.length - 1; ++i) {
             int slen = suffixLength(needle, i);
-            table[slen] = needle.len - 1 - i + slen;
+            table[slen] = needle.length - 1 - i + slen;
         }
         return table;
     }
