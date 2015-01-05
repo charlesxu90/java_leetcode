@@ -4,6 +4,7 @@
  * If it is overflow, return MAX_INT.
  */
 public class Solution {
+    // T O(long n), S(1)
     public int divide(int dividend, int divisor) {
         long a = dividend >= 0 ? dividend : - (long) dividend;
         long b = divisor >= 0 ? divisor : - (long) divisor;
