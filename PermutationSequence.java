@@ -16,6 +16,9 @@
  */
 import java.util.Arrays;
 public class PermutationSequence {
+    // Solution 1: Brute Force, or force enumeration.
+    // O(n!)?, O(n)
+    /*
     public String getPermutation(int n, int k) {
         int A[] = new int[n];
         for (int i = 0; i < n; i++)
@@ -41,6 +44,38 @@ public class PermutationSequence {
         A[p] = temp;
         // sort right of k
         Arrays.sort(A, k + 1, A.length);
+    }
+    */
+
+    // Solution 2: O(n) O(1)
+    // Suppose the Kth permutation is a1, a2, a3, a4 ... an;
+    // then:
+    // a1 = k / (n - 1)!; k2 = k % (n - 1)!
+    // a2 = k2 / (n - 2)!; k3 = r1 % (n - 2)!
+    // ...
+    // a(n-1) = k(n-1) / 1!; k(n) = k(n-1) % 1;
+    // a(n) = 0
+    public String getPermutation(int n, int k) {
+        char[] arr = new char[n];
+        int pro = 1;
+        for (int i = 0; i < n; i++) {
+            arr[i] = (char) ('1' + i);
+            pro *= (i + 1);
+        }
+        k = k - 1;
+        k %= pro;
+        pro /= n;
+        for (int i = 0; i < n - 1; i++) {
+            int selectI = k /pro;
+            k = k % pro;
+            pro /= (n - i - 1);
+            int temp = arr[selectI + i];
+            for (int j = selectI; j > 0; --j) {
+                arr[i + j] = arr[i + j - 1];
+            }
+            arr[i] = (char) temp;
+        }
+        return String.valueOf(arr);
     }
 
     public static void main (String args[] ) {
