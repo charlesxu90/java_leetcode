@@ -1,0 +1,46 @@
+/***
+ * Suppose a sorted array is rotated at some pivot unknown to you beforehand.
+ *
+ * (i.e., 0 1 2 4 5 6 7 might become 4 5 6 7 0 1 2).
+ *
+ * Find the minimum element.
+ *
+ * You may assume no duplicate exists in the array.
+ */
+public class Solution {
+    // Solution 1. O(log n) O(1)
+    //  Search for index which arr[i] > arr[i + 1]
+    public int findMin(int[] num) {
+        if (num.length == 1)
+            return num[0];
+        return findMin(num, 0, num.length - 1);
+    }
+    private int findMin(int[] num, int lid, int hid) {
+        if (lid >= hid) 
+            return num[lid];
+        int mid = (lid + hid) / 2;
+        if (num[mid] > num[mid + 1])
+            return num[mid + 1];
+        if (num[mid] > num[hid])
+            return findMin(num, mid, hid);
+        else
+            return findMin(num, lid, mid);
+    }
+    // Solution 2. O(log n) O(1)
+    //  split the sorted, rotated array into two halves,
+    //  one is sorted and the other is not, 
+    //  min is always in the unsorted one
+    public int findMin(int[] num) {
+        int l = 0;
+        int h = num.length - 1;
+        int mid;
+        while (num[l] > num[h]) {
+            mid = (l + h) / 2;
+            if (num[mid] > num[h])
+                l = mid + 1;
+            else 
+                h = mid;
+        }
+        return num[l];
+    }
+}
