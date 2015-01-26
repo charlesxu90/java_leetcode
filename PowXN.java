@@ -1,6 +1,5 @@
 /***
  * Implement pow(x, n).
- * Ignore case when x < 0, n % 2 euqls 0, and n < 0;
  */
 public class PowXN{
 
@@ -22,9 +21,9 @@ public class PowXN{
     public static void main(String[] args){
         PowXN powxn = new PowXN();
 
-        System.out.format("5e0 is: %f\n", powxn.pow(5, 0));
-        System.out.format("3e-1 is: %f\n", powxn.pow(3, -1));
-        System.out.format("2e4 is: %f\n", powxn.pow(2, 4));
+        System.out.format("5^0 is: %f\n", powxn.pow(5, 0));
+        System.out.format("3^-1 is: %f\n", powxn.pow(3, -1));
+        System.out.format("-2^3 is: %f\n", powxn.pow(-2, 3));
     }
 
 }
