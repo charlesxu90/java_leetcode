@@ -20,16 +20,16 @@ import java.util.ArrayList;
 public class Solution {
 
     public class IntervalCmp implements Comparator<Interval> {
-    
+        @Override
         public int compare (Interval i1, Interval i2) {
-        
             if (i1.start < i2.start) return -1;
             if (i1.start == i2.start && i1.end < i2.end) return -1;
             if (i1.start == i2.start && i1.end == i2.end) return 0;
             return 1;
         }
     }
-        public List<Interval> merge(List<Interval> intervals) {
+
+    public List<Interval> merge(List<Interval> intervals) {
         if (intervals.size() == 0)
             return intervals;
         List<Interval> ret = new ArrayList<Interval>();
